@@ -1,6 +1,6 @@
 {
     "name": "damalis/botble-iyzico",
-    "description": "botble iyzico payment gateway",
+    "description": "iyzico payment gateway for Botble Technologies products",
     "keywords": ["payment gateway", "iyzico", "iyzipay", "pos", "botble"],
 	"homepage": "https://github.com/damalis/botble-iyzico",
 	"license": "MIT",
