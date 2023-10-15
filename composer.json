@@ -25,11 +25,11 @@
     },
     "extra": {
         "installer-paths": {
-            "./public": ["iyzico/iyzipay-php"]
+            "./bagisto/public/": ["iyzico/iyzipay-php"]
         }
     },
 	"scripts": {
-        "test": ["echo"]
+        "post-autoload-dump": ["echo"]
     }
 	
 }
