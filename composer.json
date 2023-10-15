@@ -21,15 +21,11 @@
     "type": "package",
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54",
-        "composer/installers": "~1.0"
+        "composer/installers": "~2.2"
     },
     "extra": {
         "installer-paths": {
-            "./bagisto/public/": ["iyzico/iyzipay-php"]
+            "./public": ["iyzico/iyzipay-php"]
         }
-    },
-	"scripts": {
-        "post-autoload-dump": ["echo"]
-    }
-	
+    }	
 }
