@@ -25,11 +25,11 @@
     },
     "extra": {
         "installer-paths": {
-            "./platform/plugins": ["damalis/botble-iyzico"]
+            "./vendor": ["iyzico/iyzipay-php"]
         }
     },
 	"scripts": {
-        "post-package-install": ["mv ./images ./public/vendor/core/plugins"]
+        "post-package-install": ["mv ./damalis/botble-iyzico/images ../../public/vendor/core/plugins"]
     }
 	
 }
