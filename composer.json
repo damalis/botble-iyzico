@@ -25,9 +25,8 @@
 		"oomphinc/composer-installers-extender": "*"
     },
     "extra": {
-		"installer-types": ["library"],
         "installer-paths": {
-            "platform/plugins/{$name}/": ["damalis/botble-iyzico"]
+            "platform/plugins/": ["damalis/botble-iyzico"]
         }
     },
 	"scripts": {
