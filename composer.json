@@ -23,7 +23,7 @@
         "iyzico/iyzipay-php": ">=2.0.54"
     },
 	"scripts": {
-        "post-package-install": [
+        "test": [
             "php -r \"system('mv ' . getcwd() . '/vendor/plugins/damalis ' . getcwd() . '/platform/plugins');\""
         ]
     }	
