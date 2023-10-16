@@ -18,14 +18,19 @@
 		}
 	],
     "minimum-stability": "dev",
-    "type": "package",
+    "type": "library",
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54",
         "composer/installers": "~2.2"
     },
     "extra": {
         "installer-paths": {
-            "./public": ["iyzico/iyzipay-php"]
+            "./platform/plugins/": ["damalis/botble-iyzico"]
         }
+    },
+	"scripts": {
+        "post-install-cmd": [
+            "php -r \"system('mv ' . getcwd() . '/platform/plugins/damalis/botble-iyzico/iyzico ' . getcwd() . '/public/vendor/core/plugins');\""
+        ]
     }	
 }
