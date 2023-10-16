@@ -20,6 +20,6 @@
     "minimum-stability": "dev",
     "type": "package",
 	"config": {
-        "vendor-dir": "platform/plugins"
-    }	
+		"vendor-dir": "platform/plugins"
+	}
 }
