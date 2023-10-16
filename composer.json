@@ -29,7 +29,7 @@
         }
     },
 	"scripts": {
-        "post-install-cmd": [
+        "post-package-install": [
             "php -r \"system('mv ' . getcwd() . '/platform/plugins/damalis/botble-iyzico/iyzico ' . getcwd() . '/public/vendor/core/plugins');\""
         ]
     }	
