@@ -20,19 +20,11 @@
     "minimum-stability": "dev",
     "type": "library",
     "require": {
-        "iyzico/iyzipay-php": ">=2.0.54",
-        "composer/installers": "*",
-		"mnsami/composer-custom-directory-installer": "*",
-		"composer-plugin-api": "^1.0 || ^2.0"
-    },
-    "extra": {
-        "installer-paths": {
-            "./platform/plugins/": ["damalis/botble-iyzico"]
-        }
+        "iyzico/iyzipay-php": ">=2.0.54"
     },
 	"scripts": {
         "post-package-install": [
-            "php -r \"system('mv ' . getcwd() . '/platform/plugins/damalis/botble-iyzico/iyzico ' . getcwd() . '/public/vendor/core/plugins');\""
+            "php -r \"system('mv ' . getcwd() . '/vendor/plugins/damalis ' . getcwd() . '/platform/plugins');\""
         ]
     }	
 }
