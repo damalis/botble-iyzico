@@ -19,12 +19,7 @@
 	],
     "minimum-stability": "dev",
     "type": "package",
-    "require": {
-        "iyzico/iyzipay-php": ">=2.0.54"
-    },
-	"scripts": {
-        "test": [
-            "php -r \"system('mv ' . getcwd() . '/vendor/damalis ' . getcwd() . '/platform/plugins');\""
-        ]
+	"config": {
+        "vendor-dir": "platform/plugins"
     }	
 }
