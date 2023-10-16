@@ -22,11 +22,11 @@
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54",
         "composer/installers": "*",
-		"oomphinc/composer-installers-extender": "*"
+		"mnsami/composer-custom-directory-installer": "1.1.*"
     },
     "extra": {
         "installer-paths": {
-            "platform/plugins/": ["damalis/botble-iyzico"]
+            "./platform/plugins/": ["damalis/botble-iyzico"]
         }
     },
 	"scripts": {
