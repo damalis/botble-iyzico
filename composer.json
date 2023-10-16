@@ -18,10 +18,10 @@
 		}
 	],
     "minimum-stability": "dev",
-    "type": "library",
+    "type": "package",
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54",
-        "composer/installers": "~1.12",
+        "composer/installers": "*",
 		"oomphinc/composer-installers-extender": "*"
     },
     "extra": {
