@@ -21,7 +21,7 @@
     "type": "library",
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54",
-        "composer/installers": "~1.0",
+        "composer/installers": "~1.12",
 		"oomphinc/composer-installers-extender": "*"
     },
     "extra": {
