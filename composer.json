@@ -18,7 +18,7 @@
 		}
 	],
     "minimum-stability": "dev",
-    "type": "library",
+    "type": "package",
     "require": {
         "iyzico/iyzipay-php": ">=2.0.54"
     },
