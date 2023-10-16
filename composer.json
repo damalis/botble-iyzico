@@ -27,7 +27,7 @@
     "extra": {
 		"installer-types": ["library"],
         "installer-paths": {
-            "./platform/plugins/": ["damalis/botble-iyzico"]
+            "platform/plugins/": ["damalis/botble-iyzico"]
         }
     },
 	"scripts": {
