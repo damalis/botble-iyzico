@@ -4,6 +4,10 @@ Iyzico payment gateway for [Botble Technologies products](https://botble.com/)
 
 <p align="left"> <a href="https://www.iyzico.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/3815564?s=200&v=4" alt="iyzico" height="40" width="40"/> </a>&nbsp;&nbsp;&nbsp; <a href="https://botble.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/13820353?s=200&v=4" alt="botble technologies" width="40" height="40" width="40"/> </a>
 
+#### With this project you can quickly run the following:
+
+- [iyzico](https://github.com/iyzico/iyzipay-php)
+- [Botble Technologies](https://github.com/botble)
 
 ## Installation
 
