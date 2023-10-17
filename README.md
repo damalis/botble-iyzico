@@ -20,6 +20,8 @@ then
 
 ## Usage
 
-Go to Admin -> Payment -> Payment method -> Iyzico
+Go to Admin -> Payments -> Payment methods -> Iyzico
 
-# tried with [Nest](https://docs.botble.com/nest/) product
+[Test accounts for payment](https://sandbox-merchant.iyzipay.com/auth/login)
+
+tried with [Nest](https://docs.botble.com/nest/) product
