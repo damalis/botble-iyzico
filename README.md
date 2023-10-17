@@ -14,7 +14,7 @@ composer require iyzico/iyzipay-php
 then
 
 - download repository zip file  [botble-iyzico](https://github.com/damalis/botble-iyzico/archive/refs/heads/main.zip)
-- unzip and rename "iyzico-main" folder to "iyzico"
+- unzip and rename "botble-iyzico-main" folder to "iyzico"
 - copy iyzico folder to ./platform/plugins directory
 - finally, copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director.
 
