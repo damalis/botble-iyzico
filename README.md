@@ -16,7 +16,7 @@ then
 - download repository zip file  [botble-iyzico](https://github.com/damalis/botble-iyzico/archive/refs/heads/main.zip)
 - unzip and rename "iyzico-main" folder to "iyzico"
 - copy iyzico folder to ./platform/plugins directory
-- copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director at end.
+- finally, copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director.
 
 ## Usage
 
