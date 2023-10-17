@@ -22,6 +22,6 @@ then
 
 Go to Admin -> Payments -> Payment methods -> Iyzico
 
-[Test accounts for payment](https://sandbox-merchant.iyzipay.com/auth/login)
+[Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
 
 tried with [Nest](https://docs.botble.com/nest/) product
