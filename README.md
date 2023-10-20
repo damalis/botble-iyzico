@@ -22,6 +22,12 @@ then
 - copy iyzico folder to ./platform/plugins directory
 - finally, copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director.
 
+and
+
+```
+php artisan config:cache
+```
+
 ## Usage
 
 Go to Admin -> Payments -> Payment methods -> Iyzico
