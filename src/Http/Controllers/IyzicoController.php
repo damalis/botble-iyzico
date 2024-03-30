@@ -18,7 +18,7 @@ use Iyzipay\Options;
 class IyzicoController extends BaseController
 {
     public function paymentCallback(Request $request, BaseHttpResponse $response)
-    {   
+    {
         try {
             /**
              * @var IyzicoApiClient $api
