@@ -203,7 +203,7 @@ class HookServiceProvider extends ServiceProvider
                     $data['error'] = true;
                     $data['message'] = $checkoutFormInitialize->geterrorCode() . ", message: " . $checkoutFormInitialize->geterrorMessage();
                 } else {					
-                    $data['checkoutUrl'] = "#";//request()->getSchemeAndHttpHost() . "/checkout/" . $checkoutToken;
+                    $data['checkoutUrl'] = request()->getSchemeAndHttpHost() . "/checkout/" . $checkoutToken;
                     $data['message'] = __('İnitialize Checkout successfully!');
                     $request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
                     return $data;
