@@ -20,8 +20,14 @@ then
 
 ## Usage
 
-Go to Admin -> Payments -> Payment methods -> Iyzico
+change 'same_site' => 'lax' to 'same_site' => null in ```./config/session.php``` file.
+
+Go to Admin -> Plugins -> Installed plugins and actived Iyzico
+
+then
+ 
+Admin -> Payments -> Payment methods -> Iyzico
 
 [Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
 
-tried with [Nest](https://docs.botble.com/nest/) product
+tried with [Shofy. Version 1.0.3](https://docs.botble.com/shofy/) product
