@@ -14,20 +14,14 @@ composer require iyzico/iyzipay-php
 then
 
 - download repository zip file  [botble-iyzico](https://github.com/damalis/botble-iyzico/archive/refs/heads/main.zip)
-- unzip and rename "botble-iyzico-main" folder to "iyzico"
+- unzip and rename "botble-iyzico-*" folder to "iyzico"
 - copy iyzico folder to ./platform/plugins directory
 - finally, copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director.
 
 ## Usage
 
-change 'same_site' => 'lax' to 'same_site' => null in ```./config/session.php``` file.
-
-Go to Admin -> Plugins -> Installed plugins and actived Iyzico
-
-then
- 
-Admin -> Payments -> Payment methods -> Iyzico
+Go to Admin -> Payments -> Payment methods -> Iyzico
 
 [Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
 
-tried with [Shofy. Version 1.0.3](https://docs.botble.com/shofy/) product
+tried with [Nest](https://docs.botble.com/nest/) product
