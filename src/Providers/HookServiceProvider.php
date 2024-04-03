@@ -2,16 +2,16 @@
 
 namespace Botble\Iyzico\Providers;
 
+use Botble\Base\Facades\Html;
 use Botble\Payment\Enums\PaymentMethodEnum;
-use Botble\Payment\Supports\PaymentHelper;
-use Botble\Ecommerce\Facades\Cart;
 use Botble\Payment\Facades\PaymentMethods;
-use Collective\Html\HtmlFacade as Html;
+use Botble\Ecommerce\Facades\Cart;
+//use Collective\Html\HtmlFacade as Html;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Support\Collection;
+//use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+//use Illuminate\Support\Collection;
 use Exception;
 
 use Botble\Iyzico\Services\Gateways\IyzicoPaymentService;
@@ -76,7 +76,8 @@ class HookServiceProvider extends ServiceProvider
             if ($payment->payment_channel == IYZICO_PAYMENT_METHOD_NAME) {
                 try {
                     $paymentService = (new IyzicoPaymentService());
-                    $paymentDetail = $paymentService->getPaymentDetails($payment->charge_id);
+                    $paymentDetail = $paymentService->getPaymentDetails(Arr::get($payment->metadata, 'conversation_id', ''));
+					
                     if ($paymentDetail) {
                         $data = view('plugins/iyzico::detail', ['payment' => $paymentDetail])->render();
                     }
@@ -87,6 +88,7 @@ class HookServiceProvider extends ServiceProvider
 
             return $data;
         }, 20, 2);
+
     }
 
     public function addPaymentSettings(string|null $settings): string
@@ -104,7 +106,7 @@ class HookServiceProvider extends ServiceProvider
     }
 
     public function checkoutWithIyzico(array $data, Request $request)
-    {   
+    {
         if ($request->input('payment_method') == IYZICO_PAYMENT_METHOD_NAME) {
             
             $orderIds = implode(",", $request->input('order_id', []));
@@ -147,7 +149,7 @@ class HookServiceProvider extends ServiceProvider
 				$buyer->setIp($request->ip());
 				$buyer->setCity($request->input('address')['city']);
 				$buyer->setCountry($request->input('address')['country']);
-				//$buyer->setZipCode("34732");
+				$buyer->setZipCode($request->input('address')['zip_code']);
 				$api->setBuyer($buyer);
 				
 				$shippingAddress = new Address();
@@ -155,7 +157,7 @@ class HookServiceProvider extends ServiceProvider
 				$shippingAddress->setCity($request->input('address')['city']);
 				$shippingAddress->setCountry($request->input('address')['country']);
 				$shippingAddress->setAddress($request->input('address')['address']);
-				//$shippingAddress->setZipCode("34742");
+				$shippingAddress->setZipCode($request->input('address')['zip_code']);
 				$api->setShippingAddress($shippingAddress);
 				
 				$billingAddress = new Address();
@@ -163,7 +165,15 @@ class HookServiceProvider extends ServiceProvider
 				$billingAddress->setCity($request->input('address')['city']);
 				$billingAddress->setCountry($request->input('address')['country']);
 				$billingAddress->setAddress($request->input('address')['address']);
-				//$billingAddress->setZipCode("34742");
+				$billingAddress->setZipCode($request->input('address')['zip_code']);
+				
+				if( $request->input('billing_address_same_as_shipping_address') == 0 ) {
+					$billingAddress->setContactName($request->input('billing_address')['name']);
+					$billingAddress->setCity($request->input('billing_address')['city']);
+					$billingAddress->setCountry($request->input('billing_address')['country']);
+					$billingAddress->setAddress($request->input('billing_address')['address']);
+					$billingAddress->setZipCode($request->input('billing_address')['zip_code']);	
+				}
 				$api->setBillingAddress($billingAddress);
 				
 				$basketItems = array();
