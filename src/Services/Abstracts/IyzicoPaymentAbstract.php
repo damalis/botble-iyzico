@@ -48,7 +48,7 @@ abstract class IyzicoPaymentAbstract implements ProduceServiceInterface
 	
 	public function setApi(): self
     {
-		# create request class
+        # create request class
         $this->api = new CreateRefundRequest();
 
         return $this;
@@ -66,9 +66,9 @@ abstract class IyzicoPaymentAbstract implements ProduceServiceInterface
     {
         try {
 
-			$this->api = new ReportingPaymentDetailRequest();
-			$this->api->setPaymentConversationId($conversationId);
-			$response = ReportingPaymentDetail::create($this->api, (new IyzicoConfig)->options());
+            $this->api = new ReportingPaymentDetailRequest();
+            $this->api->setPaymentConversationId($conversationId);
+            $response = ReportingPaymentDetail::create($this->api, (new IyzicoConfig)->options());
 
         } catch (Exception $exception) {
             $this->setErrorMessageAndLogging($exception, 1);
@@ -86,28 +86,28 @@ abstract class IyzicoPaymentAbstract implements ProduceServiceInterface
     {
         try {
 
-			$this->api->setLocale(\Request::getLocale());
+            $this->api->setLocale(\Request::getLocale());
 			
-			$payment = app(PaymentInterface::class)->getFirstBy([
-				'charge_id' => $paymentId,
-				['order_id', 'IN', array_map('intval', explode(',', Arr::get($options, 'order_id', 0)))],
-			]);
-			$this->api->setConversationId(Arr::get($payment->metadata, 'conversation_id', ''));
-			
-			$this->api->setPaymentTransactionId(Arr::get($payment->metadata, 'paymentTransaction_id', ''));
-			$this->api->setPrice(number_format((float) $amount, 2, '.', ''));
-			$currency = $this->paymentCurrency;
-            if($currency == "TRY") $currency = "TL";
-			$this->api->setCurrency(constant('Iyzipay\Model\Currency::' . $currency));
-			
-			$this->api->setIp(\Request::ip());
-			$this->api->setReason(\Iyzipay\Model\RefundReason::OTHER);			
-			$description = 'Order information: ' . get_order_code(Arr::get($options, 'order_id', ''));
-			$description .= ', Detail: ' . Arr::get($options, 'refund_note', '');
-			$this->api->setDescription(Str::limit($description, 140));
+            $payment = app(PaymentInterface::class)->getFirstBy([
+                'charge_id' => $paymentId,
+                ['order_id', 'IN', array_map('intval', explode(',', Arr::get($options, 'order_id', 0)))],
+            ]);
+            $this->api->setConversationId(Arr::get($payment->metadata, 'conversation_id', ''));
 
-			# make request
-			$refund = Refund::create($this->api, (new IyzicoConfig)->options());
+            $this->api->setPaymentTransactionId(Arr::get($payment->metadata, 'paymentTransaction_id', ''));
+            $this->api->setPrice(number_format((float) $amount, 2, '.', ''));
+            $currency = $this->paymentCurrency;
+            if($currency == "TRY") $currency = "TL";
+            $this->api->setCurrency(constant('Iyzipay\Model\Currency::' . $currency));
+
+            $this->api->setIp(\Request::ip());
+            $this->api->setReason(\Iyzipay\Model\RefundReason::OTHER);			
+            $description = 'Order information: ' . get_order_code(Arr::get($options, 'order_id', ''));
+            $description .= ', Detail: ' . Arr::get($options, 'refund_note', '');
+            $this->api->setDescription(Str::limit($description, 140));
+
+            # make request
+            $refund = Refund::create($this->api, (new IyzicoConfig)->options());
 
             if ( $refund->getStatus() == \Iyzipay\Model\Status::SUCCESS && $refund->getCurrency() == $this->paymentCurrency && (float) $refund->getPrice() >= (float) $amount) {                
 
