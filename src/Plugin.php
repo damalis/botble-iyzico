@@ -14,7 +14,7 @@ class Plugin extends PluginOperationAbstract
                 'payment_iyzico_description',
                 'payment_iyzico_public',
                 'payment_iyzico_secret',
-				'payment_iyzico_mode',
+                'payment_iyzico_mode',
                 'payment_iyzico_status',
             ])
             ->delete();
