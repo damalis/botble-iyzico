@@ -4,8 +4,8 @@
     <tr class="border-pay-row">
         <td class="border-pay-col"><i class="fa fa-theme-payments"></i></td>
         <td style="width: 20%;">
-            <img class="filter-black" src="{{ url('vendor/core/plugins/iyzico/images/iyzico.png') }}"
-                 alt="Iyzico">
+            <img class="filter-black" src="{{ url('vendor/core/plugins/iyzico/images/' . app()->getLocale() . '/iyzico.png') }}"
+                 alt="Iyzico" style="width:auto !important">
         </td>
         <td class="border-right">
             <ul>
