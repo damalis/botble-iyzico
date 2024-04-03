@@ -6,6 +6,9 @@ use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Supports\PaymentHelper;
+use Botble\Payment\Repositories\Interfaces\PaymentInterface;
+use Botble\Payment\Models\Payment;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -60,7 +63,18 @@ class IyzicoController extends BaseController
             'payment_type' => 'direct',
             'order_id' => array_map('intval', explode(',', $checkoutForm->getBasketId())),
         ]);
-        
+		
+		$payment = app(PaymentInterface::class)->getFirstBy([
+            'charge_id' => $checkoutForm->getPaymentId(),
+            ['order_id', 'IN', array_map('intval', explode(',', $checkoutForm->getBasketId()))],
+        ]);
+		
+		$paymentMetadata = Payment::query()->findOrFail($payment->id);
+		Arr::set($metadata, 'conversation_id', $request->session()->get('tracked_start_checkout'));
+		Arr::set($metadata, 'paymentTransaction_id', $checkoutForm->getPaymentItems()[0]->getPaymentTransactionId());
+        $paymentMetadata->metadata = $metadata;
+        $paymentMetadata->save();
+					
         return $response
             ->setNextUrl(PaymentHelper::getRedirectURL())
             ->setMessage(__('Checkout successfully!'));
