@@ -32,7 +32,7 @@ class IyzicoController extends BaseController
             $api->setToken($request->input('token'));
             
             # make request
-	        $checkoutForm = CheckoutForm::retrieve($api, (new IyzicoConfig)->options());
+            $checkoutForm = CheckoutForm::retrieve($api, (new IyzicoConfig)->options());
             
             if(strtolower($checkoutForm->getPaymentStatus()) !== \Iyzipay\Model\Status::SUCCESS) {
                 return $response
@@ -64,14 +64,14 @@ class IyzicoController extends BaseController
             'order_id' => array_map('intval', explode(',', $checkoutForm->getBasketId())),
         ]);
 		
-		$payment = app(PaymentInterface::class)->getFirstBy([
+        $payment = app(PaymentInterface::class)->getFirstBy([
             'charge_id' => $checkoutForm->getPaymentId(),
             ['order_id', 'IN', array_map('intval', explode(',', $checkoutForm->getBasketId()))],
         ]);
 		
-		$paymentMetadata = Payment::query()->findOrFail($payment->id);
-		Arr::set($metadata, 'conversation_id', $request->session()->get('tracked_start_checkout'));
-		Arr::set($metadata, 'paymentTransaction_id', $checkoutForm->getPaymentItems()[0]->getPaymentTransactionId());
+        $paymentMetadata = Payment::query()->findOrFail($payment->id);
+        Arr::set($metadata, 'conversation_id', $request->session()->get('tracked_start_checkout'));
+        Arr::set($metadata, 'paymentTransaction_id', $checkoutForm->getPaymentItems()[0]->getPaymentTransactionId());
         $paymentMetadata->metadata = $metadata;
         $paymentMetadata->save();
 					
