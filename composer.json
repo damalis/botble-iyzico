@@ -1,0 +1,8 @@
+{
+    "name": "botble/iyzico",
+    "description": "Iyzico payment gateway",
+    "type": "package",
+    "require": {
+        "iyzico/iyzipay-php": "^2.0"
+    }
+}
