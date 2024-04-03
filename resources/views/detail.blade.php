@@ -3,10 +3,10 @@
 	<p>{{ trans('plugins/payment::payment.payment_id') }}: {{ $payment->getPayments()[0]->paymentId }}</p>
 	<p>{{ trans('plugins/payment::payment.amount') }}: {{ number_format($payment->getPayments()[0]->paidPrice, 2) }} {{ $payment->getPayments()[0]->currency}}</p>
 	<!--<p>{{-- trans('plugins/payment::payment.amount_remaining') --}}: {{-- $payment->amountRemaining->value --}} {{-- $payment->amountRemaining->currency --}}</p>-->
-	@php
-		$paymentStatus = "Success";
-		if ($payment->getPayments()[0]->paymentStatus !== 1) $paymentStatus = "Failure";
-	@endphp
+    @php
+        $paymentStatus = "Success";
+        if ($payment->getPayments()[0]->paymentStatus !== 1) $paymentStatus = "Failure";
+    @endphp
     <p>{{ trans('plugins/payment::payment.status') }}: {{ __($paymentStatus) }}</p>
 	<p>{{ trans('plugins/payment::payment.paid_at') }}: {{ Carbon\Carbon::now()->parse($payment->getPayments()[0]->createdDate) }}</p>
 	
@@ -27,10 +27,10 @@
                 <p>{{ trans('plugins/payment::payment.refunds.id') }}: {{ htmlspecialchars($refund->refundTxId) }}</p>
                 <p>{{ trans('plugins/payment::payment.amount') }}: {{ number_format($refund->refundPrice, 2) }} {{ $refund->currencyCode }}</p>
                 <p>{{ trans('plugins/payment::payment.refunds.description') }}: {{ $payment->getPayments()[0]->paymentRefundStatus }}</p>
-				@php
-					$refundStatus = "Success";
-					if ($refund->refundStatus !== 1) $refundStatus = "Failure";
-				@endphp
+                @php
+                    $refundStatus = "Success";
+                    if ($refund->refundStatus !== 1) $refundStatus = "Failure";
+                @endphp
                 <p>{{ trans('plugins/payment::payment.refunds.status') }}: {{ __($refundStatus) }}</p>
                 <p>{{ trans('plugins/payment::payment.refunds.create_time') }}: {{ Carbon\Carbon::now()->parse($refund->createdDate) }}</p>
             </div>
