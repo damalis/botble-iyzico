@@ -31,7 +31,7 @@ class HookServiceProvider extends ServiceProvider
     public function boot(): void
     { 
         add_filter(PAYMENT_FILTER_ADDITIONAL_PAYMENT_METHODS, [$this, 'registerIyzicoMethod'], 117, 2);
-		add_filter(PAYMENT_FILTER_AFTER_POST_CHECKOUT, [$this, 'checkoutWithIyzico'], 117, 2);        
+        add_filter(PAYMENT_FILTER_AFTER_POST_CHECKOUT, [$this, 'checkoutWithIyzico'], 117, 2);        
         
         add_filter(PAYMENT_METHODS_SETTINGS_PAGE, [$this, 'addPaymentSettings'], 199);
 
@@ -118,65 +118,65 @@ class HookServiceProvider extends ServiceProvider
 			
             try {
                 /** @var IyzicoApiClient $api */				
-				# create request class
-				$api = new CreateCheckoutFormInitializeRequest();
-				$api->setLocale($request->getLocale());
-				$api->setConversationId($checkoutToken);
-				//$api->setPrice("1");
-				//$api->setPaidPrice("1.2");
+                # create request class
+                $api = new CreateCheckoutFormInitializeRequest();
+                $api->setLocale($request->getLocale());
+                $api->setConversationId($checkoutToken);
+                //$api->setPrice("1");
+                //$api->setPaidPrice("1.2");
                 $currency = $request->input('currency');
                 if($currency == "TRY") $currency = "TL";
-				$api->setCurrency(constant('Iyzipay\Model\Currency::' . $currency));
-				$api->setBasketId($orderIds);
-				$api->setPaymentGroup(PaymentGroup::PRODUCT);
-				$api->setCallbackUrl(request()->getSchemeAndHttpHost() . "/iyzico/payment/callback/" . $checkoutToken);
-				$api->setEnabledInstallments(array(2, 3, 6, 9));
+                $api->setCurrency(constant('Iyzipay\Model\Currency::' . $currency));
+                $api->setBasketId($orderIds);
+                $api->setPaymentGroup(PaymentGroup::PRODUCT);
+                $api->setCallbackUrl(request()->getSchemeAndHttpHost() . "/iyzico/payment/callback/" . $checkoutToken);
+                $api->setEnabledInstallments(array(2, 3, 6, 9));
 				
 				$buyer = new Buyer();
                 $request->session()->put('customer_id', $request->input('customer_id'));
                 $request->session()->put('customer_type', $request->input('customer_type'));
                 $customerId = $request->input('customer_id');
                 if(! $customerId ) $customerId = $checkoutToken;
-				$buyer->setId($customerId);
-				$buyer->setName($request->input('address')['name']);
-				$buyer->setSurname($request->input('address')['name']);
-				$buyer->setGsmNumber($request->input('address')['phone']);
-				$buyer->setEmail($request->input('address')['email']);
-				$buyer->setIdentityNumber("74300864791");
-				//$buyer->setLastLoginDate(date('Y-m-d H:i:s'));
-				//$buyer->setRegistrationDate(date('Y-m-d H:i:s'));
-				$buyer->setRegistrationAddress($request->input('address')['address']);
-				$buyer->setIp($request->ip());
-				$buyer->setCity($request->input('address')['city']);
-				$buyer->setCountry($request->input('address')['country']);
-				$buyer->setZipCode($request->input('address')['zip_code']);
-				$api->setBuyer($buyer);
-				
-				$shippingAddress = new Address();
-				$shippingAddress->setContactName($request->input('address')['name']);
-				$shippingAddress->setCity($request->input('address')['city']);
-				$shippingAddress->setCountry($request->input('address')['country']);
-				$shippingAddress->setAddress($request->input('address')['address']);
-				$shippingAddress->setZipCode($request->input('address')['zip_code']);
-				$api->setShippingAddress($shippingAddress);
-				
-				$billingAddress = new Address();
-				$billingAddress->setContactName($request->input('address')['name']);
-				$billingAddress->setCity($request->input('address')['city']);
-				$billingAddress->setCountry($request->input('address')['country']);
-				$billingAddress->setAddress($request->input('address')['address']);
-				$billingAddress->setZipCode($request->input('address')['zip_code']);
-				
-				if( $request->input('billing_address_same_as_shipping_address') == 0 ) {
-					$billingAddress->setContactName($request->input('billing_address')['name']);
-					$billingAddress->setCity($request->input('billing_address')['city']);
-					$billingAddress->setCountry($request->input('billing_address')['country']);
-					$billingAddress->setAddress($request->input('billing_address')['address']);
-					$billingAddress->setZipCode($request->input('billing_address')['zip_code']);	
-				}
-				$api->setBillingAddress($billingAddress);
-				
-				$basketItems = array();
+                $buyer->setId($customerId);
+                $buyer->setName($request->input('address')['name']);
+                $buyer->setSurname($request->input('address')['name']);
+                $buyer->setGsmNumber($request->input('address')['phone']);
+                $buyer->setEmail($request->input('address')['email']);
+                $buyer->setIdentityNumber("74300864791");
+                //$buyer->setLastLoginDate(date('Y-m-d H:i:s'));
+                //$buyer->setRegistrationDate(date('Y-m-d H:i:s'));
+                $buyer->setRegistrationAddress($request->input('address')['address']);
+                $buyer->setIp($request->ip());
+                $buyer->setCity($request->input('address')['city']);
+                $buyer->setCountry($request->input('address')['country']);
+                $buyer->setZipCode($request->input('address')['zip_code']);
+                $api->setBuyer($buyer);
+
+                $shippingAddress = new Address();
+                $shippingAddress->setContactName($request->input('address')['name']);
+                $shippingAddress->setCity($request->input('address')['city']);
+                $shippingAddress->setCountry($request->input('address')['country']);
+                $shippingAddress->setAddress($request->input('address')['address']);
+                $shippingAddress->setZipCode($request->input('address')['zip_code']);
+                $api->setShippingAddress($shippingAddress);
+
+                $billingAddress = new Address();
+                $billingAddress->setContactName($request->input('address')['name']);
+                $billingAddress->setCity($request->input('address')['city']);
+                $billingAddress->setCountry($request->input('address')['country']);
+                $billingAddress->setAddress($request->input('address')['address']);
+                $billingAddress->setZipCode($request->input('address')['zip_code']);
+
+                if( $request->input('billing_address_same_as_shipping_address') == 0 ) {
+                    $billingAddress->setContactName($request->input('billing_address')['name']);
+                    $billingAddress->setCity($request->input('billing_address')['city']);
+                    $billingAddress->setCountry($request->input('billing_address')['country']);
+                    $billingAddress->setAddress($request->input('billing_address')['address']);
+                    $billingAddress->setZipCode($request->input('billing_address')['zip_code']);	
+                }
+                $api->setBillingAddress($billingAddress);
+
+                $basketItems = array();
                 $amountTotal = 0;                
                 $i = 0;
                 foreach ($groupedProducts as $grouped) {                    
