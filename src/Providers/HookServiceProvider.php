@@ -2,16 +2,15 @@
 
 namespace Botble\Iyzico\Providers;
 
-use Botble\Base\Facades\Html;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Facades\PaymentMethods;
 use Botble\Ecommerce\Facades\Cart;
-//use Collective\Html\HtmlFacade as Html;
+use Collective\Html\HtmlFacade as Html;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
-//use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-//use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Support\Collection;
 use Exception;
 
 use Botble\Iyzico\Services\Gateways\IyzicoPaymentService;
@@ -195,7 +194,7 @@ class HookServiceProvider extends ServiceProvider
                         $BasketItem->setCategory1($storeName);
                         $BasketItem->setCategory2('category 2');
                         $BasketItem->setItemType(BasketItemType::VIRTUAL);
-                        $BasketItem->setPrice(number_format((float)$paymentData['products'][$i]['price_per_order'], 2, '.', ''));                    
+                        $BasketItem->setPrice(number_format((float)($paymentData['products'][$i]['price'] + $paymentData['orders'][0]->products[$i]->tax_amount), 2, '.', ''));
                         $basketItems[$i] = $BasketItem;
                         
                         $i++;
