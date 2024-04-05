@@ -114,7 +114,7 @@ class HookServiceProvider extends ServiceProvider
             $checkoutToken = $request->input('checkout-token');
             $products = Cart::instance('cart')->products();
             $groupedProducts = $this->cartGroupByStore($products);
-			
+
             try {
                 /** @var IyzicoApiClient $api */				
                 # create request class
@@ -189,12 +189,12 @@ class HookServiceProvider extends ServiceProvider
 
                     foreach($grouped['products'] as $product) {
                         $BasketItem = new BasketItem();
-                        $BasketItem->setId($product->original_product->id);
-                        $BasketItem->setName($product->original_product->name);
+                        $BasketItem->setId($product->id);
+                        $BasketItem->setName($product->name);
                         $BasketItem->setCategory1($storeName);
                         $BasketItem->setCategory2('category 2');
                         $BasketItem->setItemType(BasketItemType::VIRTUAL);
-                        $BasketItem->setPrice(number_format((float)($paymentData['products'][$i]['price'] + $paymentData['orders'][0]->products[$i]->tax_amount), 2, '.', ''));
+                        $BasketItem->setPrice(number_format((float)($paymentData['products'][$i]['price_per_order']), 2, '.', ''));
                         $basketItems[$i] = $BasketItem;
                         
                         $i++;
