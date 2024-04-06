@@ -69,22 +69,22 @@ class IyzicoController extends BaseController
             ['order_id', 'IN', array_map('intval', explode(',', $checkoutForm->getBasketId()))],
         ]);
 		
-        foreach ($payments as $payment) {
-            $paymentItems = $checkoutForm->getPaymentItems();			
-			foreach ($paymentItems as $paymentItem) {				
-			    $paymentMetadata = app(PaymentInterface::class)->getFirstBy([
-				    'id' => $payment->id,
-                    'amount' => number_format((float)($paymentItem->getPaidPrice()), 2, '.', ''),
-                ]);
+		foreach ($payments as $payment) {
+			$paymentItems = $checkoutForm->getPaymentItems();			
+			foreach ($paymentItems as $paymentItem) {
+				$paymentMetadata = app(PaymentInterface::class)->getFirstBy([
+					'id' => $payment->id,
+					'amount' => number_format((float)($paymentItem->getPaidPrice()), 2, '.', ''),
+				]);
 				
 				if( !empty($paymentMetadata) ) {
-				    Arr::set($metadata, 'conversation_id', $request->session()->get('tracked_start_checkout'));
-                    Arr::set($metadata, 'paymentTransaction_id', $paymentItem->getPaymentTransactionId());
-                    $paymentMetadata->metadata = $metadata;
-                    $paymentMetadata->save();
+					Arr::set($metadata, 'conversation_id', $request->session()->get('tracked_start_checkout'));
+					Arr::set($metadata, 'paymentTransaction_id', $paymentItem->getPaymentTransactionId());
+					$paymentMetadata->metadata = $metadata;
+					$paymentMetadata->save();
 				}
 			}
-        }
+		}
 					
         return $response
             ->setNextUrl(PaymentHelper::getRedirectURL())
