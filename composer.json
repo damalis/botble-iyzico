@@ -1,12 +1,34 @@
 {
     "name": "damalis/botble-iyzico",
-    "description": "Iyzico payment gateway",
     "type": "botble-plugin",
+    "description": "Iyzico payment gateway for botble",
+    "keywords": ["payment gateway", "payment", "botble", "iyzico", "iyzipay"],
+    "homepage": "https://github.com/damalis/botble-iyzico",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "damalis",
+            "email": "erdal80@hotmail.com",
+            "homepage": "https://github.com/damalis"
+        }
+    ],
     "require": {
         "iyzico/iyzipay-php": "^2.0",
 		"composer/installers": "*"
     },
+    "autoload": {
+    "psr-4": {
+           "Botble\\Iyzico\\": "src/"
+        }
+    },
 	"extra": {
+        "laravel": {
+            "providers": [
+                "Botble\\Iyzico\\Providers\\IyzicoServiceProvider"
+            ],
+            "aliases": {}
+        },
         "installer-name": "iyzico"
     }
 }
