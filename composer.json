@@ -1,8 +1,12 @@
 {
-    "name": "botble/iyzico",
+    "name": "damalis/botble-iyzico",
     "description": "Iyzico payment gateway",
-    "type": "package",
+    "type": "botble-plugin",
     "require": {
-        "iyzico/iyzipay-php": "^2.0"
+        "iyzico/iyzipay-php": "^2.0",
+		"composer/installers": "*"
+    },
+	"extra": {
+        "installer-name": "iyzico"
     }
 }

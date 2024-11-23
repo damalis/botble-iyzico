@@ -129,7 +129,7 @@ class HookServiceProvider extends ServiceProvider
                 $api->setBasketId($orderIds);
                 $api->setPaymentGroup(PaymentGroup::PRODUCT);
                 $api->setCallbackUrl(request()->getSchemeAndHttpHost() . "/iyzico/payment/callback/" . $checkoutToken);
-                $api->setEnabledInstallments(array(3, 6, 9, 12));
+                //$api->setEnabledInstallments(array(3, 6, 9, 12));
 				
 				$buyer = new Buyer();
                 $request->session()->put('customer_id', $request->input('customer_id'));

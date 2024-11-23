@@ -1,5 +1,5 @@
 {
-    "id": "botble/iyzico",
+    "id": "damalis/botble-iyzico",
     "name": "Iyzico Payment Gateway",
     "namespace": "Botble\\Iyzico\\",
     "provider": "Botble\\Iyzico\\Providers\\IyzicoServiceProvider",
@@ -7,5 +7,6 @@
     "url": "https://github.com/damalis?tab=repositories",
     "version": "1.0.0",
     "description": "Iyzico payment gateway integration",
+    "minimum_core_version": "7.0.0",
     "require": ["botble/payment"]
 }

@@ -2,21 +2,35 @@
 
 Iyzico payment gateway for [Botble Technologies products](https://botble.com/)
 
-<p align="left"> <a href="https://www.iyzico.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/3815564?s=200&v=4" alt="iyzico" height="40" width="40"/> </a>&nbsp;&nbsp;&nbsp; <a href="https://botble.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/13820353?s=200&v=4" alt="botble technologies" width="40" height="40" width="40"/> </a>
+<p align="left"> <a href="https://www.iyzico.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/3815564?s=200&v=4" alt="iyzico"/> </a>&nbsp;&nbsp;&nbsp;
+<a href="https://botble.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/13820353?s=200&v=4" alt="botble technologies"/> </a></p>
 
+#### With this project you can quickly run the following:
+
+- [iyzico](https://github.com/iyzico/iyzipay-php)
+- [Botble](https://github.com/botble)
 
 ## Installation
 
 ```
-composer require iyzico/iyzipay-php
+composer require damalis/botble-iyzico
 ```
 
-then
+- Run these commands below to complete the setup
 
-- download repository zip file  [botble-iyzico](https://github.com/damalis/botble-iyzico/archive/refs/heads/main.zip)
-- unzip and rename "botble-iyzico-*" folder to "iyzico"
-- copy iyzico folder to ./platform/plugins directory
-- finally, copy iyzico folder in iyzico directory to ./public/vendor/core/plugins director.
+```
+composer dump-autoload
+```
+
+- iyzico logo file will be copied to the specified location
+
+```
+php artisan cms:plugin:assets:publish iyzico
+```
+
+```
+php artisan optimize:clear
+```
 
 ## Usage
 
@@ -29,5 +43,7 @@ then
 Admin -> Payments -> Payment methods -> Iyzico
 
 [Test account for payment](https://sandbox-merchant.iyzipay.com/auth/login)
+
+[Test Card Details](https://docs.iyzico.com/en/add-ons/test-cards)
 
 tried with [Shofy. Version 1.0.3](https://docs.botble.com/shofy/) product
