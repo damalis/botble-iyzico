@@ -19,11 +19,14 @@ use Iyzipay\Model\Address;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
 use Iyzipay\Model\Buyer;
-use Iyzipay\Model\CheckoutFormInitialize;
+//use Iyzipay\Model\CheckoutFormInitialize;
 use Iyzipay\Model\Locale;
 use Iyzipay\Model\PaymentGroup;
 use Iyzipay\Options;
-use Iyzipay\Request\CreateCheckoutFormInitializeRequest;
+//use Iyzipay\Request\CreateCheckoutFormInitializeRequest;
+
+use Iyzipay\Model\PayWithIyzicoInitialize;
+use Iyzipay\Request\CreatePayWithIyzicoInitializeRequest;
 
 class HookServiceProvider extends ServiceProvider
 {
@@ -118,7 +121,8 @@ class HookServiceProvider extends ServiceProvider
             try {
                 /** @var IyzicoApiClient $api */				
                 # create request class
-                $api = new CreateCheckoutFormInitializeRequest();
+                //$api = new CreateCheckoutFormInitializeRequest();
+                $api = new CreatePayWithIyzicoInitializeRequest();
                 $api->setLocale($request->getLocale());
                 $api->setConversationId($checkoutToken);
                 //$api->setPrice("1");
@@ -206,7 +210,8 @@ class HookServiceProvider extends ServiceProvider
                 $api->setPaidPrice(number_format((float)$request->input('amount'), 2, '.', ''));
                 
                 # make request
-                $checkoutFormInitialize = CheckoutFormInitialize::create($api, (new IyzicoConfig)->options());
+                //$checkoutFormInitialize = CheckoutFormInitialize::create($api, (new IyzicoConfig)->options());
+                $checkoutFormInitialize = PayWithIyzicoInitialize::create($api, (new IyzicoConfig)->options());
                 
                 if( $checkoutFormInitialize->getStatus() != "success" ) {
                     $data['error'] = true;
@@ -214,7 +219,8 @@ class HookServiceProvider extends ServiceProvider
                 } else {					
                     $data['checkoutUrl'] = request()->getSchemeAndHttpHost() . "/checkout/" . $checkoutToken;
                     $data['message'] = __('İnitialize Checkout successfully!');
-                    $request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
+                    //$request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getCheckoutFormContent());
+                    $request->session()->put('paymentcontent_msg', $checkoutFormInitialize->getPayWithIyzicoPageUrl());
                     return $data;
                 }
             } catch (Exception $exception) {

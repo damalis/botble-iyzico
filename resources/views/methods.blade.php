@@ -10,5 +10,9 @@
 @endif
 
 @if (session()->has('success_msg') && session('success_msg') && session()->has('paymentcontent_msg') && session('paymentcontent_msg'))
-    {!! session('paymentcontent_msg') !!}
+    <script type="text/javascript">
+        window.location.href = "{!! session('paymentcontent_msg') !!}";
+    </script >
+    <div id="iyzipay-checkout-form" class="popup">
+    </div>
 @endif

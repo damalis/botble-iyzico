@@ -78,26 +78,26 @@
                             {{ trans('plugins/payment::payment.please_provide_information') }} <a target="_blank" href="https://iyzico.com/">Iyzico</a>:
                         </p>
 
-                        <x-core-setting::text-input
-                            :name="'payment_' . IYZICO_PAYMENT_METHOD_NAME . '_public'"
-                            :label="__('Public Key')"
-                            :value="get_payment_setting('public', IYZICO_PAYMENT_METHOD_NAME)"
-                            placeholder="pk_****"
-                        />
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="{{ IYZICO_PAYMENT_METHOD_NAME }}_public">{{ __('Public Key') }}</label>
+                            <input type="text" class="next-input"
+                                   name="payment_{{ IYZICO_PAYMENT_METHOD_NAME }}_public" id="{{ IYZICO_PAYMENT_METHOD_NAME }}_public"
+                                   value="{{ get_payment_setting('public', IYZICO_PAYMENT_METHOD_NAME) }}" placeholder="pk_****">
+                        </div>
 
-                        <x-core-setting::text-input
-                            :name="'payment_' . IYZICO_PAYMENT_METHOD_NAME . '_secret'"
-                            type="password"
-                            :label="__('Secret Key')"
-                            :value="get_payment_setting('secret', IYZICO_PAYMENT_METHOD_NAME)"
-                            placeholder="sk_****"
-                        />
-						
-						<x-core-setting::checkbox
-                            name="payment_iyzico_mode"
-                            :label="trans('plugins/payment::payment.sandbox_mode')"
-                            :value="! get_payment_setting('payment_iyzico_mode')"
-                        />
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="{{ IYZICO_PAYMENT_METHOD_NAME }}_secret">{{ __('Secret Key') }}</label>
+                            <input type="password" class="next-input" id="{{ IYZICO_PAYMENT_METHOD_NAME }}_secret"
+                                   name="payment_{{ IYZICO_PAYMENT_METHOD_NAME }}_secret"
+                                   value="{{ get_payment_setting('secret', IYZICO_PAYMENT_METHOD_NAME) }}" placeholder="sk_****">
+                        </div>
+
+                        <div class="form-group mb-3">                            
+                            <label class="next-label">
+                                <input type="checkbox" id="{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" value="1" name="payment_{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" @if (setting('payment_' . IYZICO_PAYMENT_METHOD_NAME . '_mode') == 1) checked @endif>
+                                {{ trans('plugins/payment::payment.sandbox_mode') }}
+                            </label>
+                        </div>
 
                         {!! apply_filters(PAYMENT_METHOD_SETTINGS_CONTENT, null, IYZICO_PAYMENT_METHOD_NAME) !!}
                     </div>
