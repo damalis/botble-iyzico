@@ -30,10 +30,11 @@ class IyzicoConfig
     { 
         $iyzicoMode = setting('payment_iyzico_mode');
 
-        if ($iyzicoMode) {			
+        if ( !$iyzicoMode ) {			
             return "https://sandbox-api.iyzipay.com";
         }
 
-        return "https://api.merchant.iyzico.com";
+        //return "https://api.merchant.iyzico.com";
+        return "https://api.iyzipay.com";
     }
 }

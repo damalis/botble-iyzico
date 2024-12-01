@@ -92,9 +92,10 @@
                                    value="{{ get_payment_setting('secret', IYZICO_PAYMENT_METHOD_NAME) }}" placeholder="sk_****">
                         </div>
 
-                        <div class="form-group mb-3">                            
+                        <div class="form-group mb-3">
+                            {!! Form::hidden('payment_' . IYZICO_PAYMENT_METHOD_NAME . '_mode', 1) !!}
                             <label class="next-label">
-                                <input type="checkbox" id="{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" value="1" name="payment_{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" @if (setting('payment_' . IYZICO_PAYMENT_METHOD_NAME . '_mode') == 1) checked @endif>
+                                <input type="checkbox" id="{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" value="0" name="payment_{{ IYZICO_PAYMENT_METHOD_NAME }}_mode" @if (setting('payment_' . IYZICO_PAYMENT_METHOD_NAME . '_mode') == 0) checked @endif>
                                 {{ trans('plugins/payment::payment.sandbox_mode') }}
                             </label>
                         </div>
