@@ -2,8 +2,8 @@
 
 Iyzico payment gateway for [Botble Technologies products](https://botble.com/)
 
-<p align="left"> <a href="https://www.iyzico.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/3815564?s=200&v=4" alt="iyzico"/> </a>&nbsp;&nbsp;&nbsp;
-<a href="https://botble.com/" target="_blank" rel="noreferrer"> <img src="https://avatars.githubusercontent.com/u/13820353?s=200&v=4" alt="botble technologies"/> </a></p>
+[![iyzico](https://img.shields.io/badge/Payment-iyzico-1e64ff?style=for-the-badge&logo=iyzico&logoColor=white)](https://iyzico.com)
+[![Botble](https://img.shields.io/badge/eCommerce-Botble-007BFF?style=for-the-badge&logo=botble&logoColor=white)](https://botble.com/)
 
 #### With this project you can quickly run the following:
 
